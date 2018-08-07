@@ -8,4 +8,4 @@
 
   Ginu Mohan https://www.upwork.com/freelancers/~015f42f40b607c7886 and 
 
-  Steve author of SizeUp http://www.irradiatedsoftware.com/sizeup/ for their help.
+  Steve author of SizeUp http://www.irradiatedsoftware.com/sizeup/ for their contributions.
