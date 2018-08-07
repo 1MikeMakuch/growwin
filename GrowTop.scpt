@@ -6,7 +6,7 @@ set configFile to (parentFolder & "ResizeConfig.cfg")
 
 try
 	set theFileContents to paragraphs of (read file configFile)
-	
+
 	-- Percentage increase value from file with error checks.
 	set percentageIncrease to item 1 of theFileContents as text
 	try
@@ -14,7 +14,7 @@ try
 	on error
 		set percentageIncrease to defaultPercentageIncrease
 	end try
-	
+
 	-- Percentage increase mode value from file with error checks.
 	set percentageMode to item 2 of theFileContents as text
 	try
@@ -40,18 +40,33 @@ end tell
 tell application "System Events"
 	set myFrontMost to name of first item of (processes whose frontmost is true)
 	tell application process myFrontMost
-		set {width, height} to size of window 1
-		set {x, y} to position of window 1
-		
+
+		-- The trick here is that you can't rely on "window 1" to be the one you're after,
+		-- So let's filter the UI elements list by subroles.
+		-- Emacs return a a total bogus AXTextField:AXStandardWindow, but we can stil work with it
+
+		set theWindows to (every UI element whose subrole is "AXStandardWindow")
+
+		-- For Activity Monitor (others?)
+		if theWindows is {} then set theWindows to (every UI element whose subrole is "AXDialog")
+		if theWindows is {} then
+			beep
+			return
+		end if
+		set theWindow to (first item of theWindows)
+
+		set {width, height} to size of theWindow
+		set {x, y} to position of theWindow
+
 		-- Calculate the percentage height to increase
 		if percentageMode is equal to 0 then
 			set newHeight to height + (height * percentageIncrease)
 		else
 			set newHeight to height + (screenHeight * percentageIncrease)
 		end if
-		
+
 		-- Resize the application window by increasing the height to the top.
-		tell window 1
+		tell theWindow
 			set position to {x, y - (newHeight - height)}
 			set size to {width, newHeight}
 		end tell

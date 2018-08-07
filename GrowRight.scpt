@@ -40,18 +40,45 @@ end tell
 tell application "System Events"
 	set myFrontMost to name of first item of (processes whose frontmost is true)
 	tell application process myFrontMost
-		set {width, height} to size of window 1
-		set {x, y} to position of window 1
+
+		-- The trick here is that you can't rely on "window 1" to be the one you're after,
+		-- So let's filter the UI elements list by subroles.
+		-- Emacs return a a total bogus AXTextField:AXStandardWindow, but we can stil work with it
+
+		set theWindows to (every UI element whose subrole is "AXStandardWindow")
+
+		-- For Activity Monitor (others?)
+		if theWindows is {} then set theWindows to (every UI element whose subrole is "AXDialog")
+		if theWindows is {} then
+			beep
+			return
+		end if
+		set theWindow to (first item of theWindows)
+
+		-- set {width, height} to size of window 1
+		-- set {x, y} to position of window 1
+		
+		-- Calculate the percentage width to increase
+		-- if percentageMode is equal to 0 then
+		-- 	set newWidth to width + (width * percentageIncrease)
+		-- else
+		-- 	set newWidth to width + (screenWidth * percentageIncrease)
+		-- end if
+
+		set {width, height} to size of theWindow
+		set {x, y} to position of theWindow
 		
 		-- Calculate the percentage width to increase
 		if percentageMode is equal to 0 then
-			set newWidth to width + (width * percentageIncrease)
+		  set newWidth to width + (width * percentageIncrease)
 		else
-			set newWidth to width + (screenWidth * percentageIncrease)
+		  set newWidth to width + (screenWidth * percentageIncrease)
 		end if
 		
 		-- Resize the application window by increasing the width to the right.
-		tell window 1
+		-- tell window 1
+
+		tell theWindow
 			set size to {newWidth, height}
 		end tell
 	end tell
