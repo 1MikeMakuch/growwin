@@ -6,7 +6,7 @@
 
   Control + Shift + arrow
 
-* I use these in conjunction with SizeUp. SizeUp allows you to position any application window in one of the 4 quarters of the screen or in 1 of the 4 halves of the screen. These scripts allow you to enlarge one window on one edge at a time. 
+* I use these in conjunction with SizeUp. SizeUp allows you to position any application window in one of the 4 quarters of the screen or in 1 of the 4 halves of the screen. These scripts allow you to enlarge one window on one edge at a time by a configurable percentage, default 25%.
 
 * Thanks to 
 
