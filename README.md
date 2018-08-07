@@ -1,4 +1,4 @@
-# growwin
+# growwin - Because pointer devices are just wrong.
 
 * Applescripts to increase size of window on one edge
 
