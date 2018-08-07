@@ -1,6 +1,6 @@
 # growwin - Because pointer devices are just wrong.
 
-* Applescripts to increase size of window on one edge
+* Applescripts to increase size of window on one edge with keyboard shortcuts (without mouse)
 
 * I use FastScripts to invoke each of the four scripts with a keyboard shortcut, namely
 
