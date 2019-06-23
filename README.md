@@ -1,4 +1,4 @@
-# growwin - Because pointer devices are just wrong.
+# growwin - scripts to arrange and resize Mac desktop windows via keyboard shortcuts
 
 * Applescripts to increase size of window on one edge with keyboard shortcuts (without mouse)
 
