@@ -16,4 +16,4 @@
 
   FastScripts: https://red-sweater.com/fastscripts/
 
-* Demo video https://www.youtube.com/watch?v=sDhBrKy7AoI
+* Demo video https://youtu.be/ZlE1gzMAhGs
